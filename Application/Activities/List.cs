@@ -31,6 +31,7 @@ namespace Application.Activities
             {
                 try 
                 {
+                    /*
                     for (var i=0; i<10; i++)
                     {
                         cancellationToken.ThrowIfCancellationRequested();
@@ -39,7 +40,7 @@ namespace Application.Activities
 
 
                     }
-
+                    */
                     
                 }
                 catch (Exception ex) when (ex is TaskCanceledException)
