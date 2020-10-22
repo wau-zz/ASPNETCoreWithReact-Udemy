@@ -7,11 +7,9 @@ configure({enforceActions: 'always'});
 
 export class ActivityStore {
     @observable activityRegistry = new Map();
-    @observable activities: IActivity[] = [];
-    @observable activity: IActivity | undefined;
+    @observable activity: IActivity | null = null;
     @observable selectedActivity: IActivity | undefined;
     @observable loadingInitial = false;
-    @observable editMode = false;
     @observable submitting = false;
     @observable target = '';
     
@@ -74,6 +72,11 @@ export class ActivityStore {
         }
     }
 
+    @action clearActivity = () => {
+        this.activity = null;
+
+    }
+
     getActivity = (id: string) => {
         return this.activityRegistry.get(id);
     }
@@ -83,8 +86,7 @@ export class ActivityStore {
         try {
             await agent.Activities.create(activity);
             runInAction(() => {
-                this.activities.push(activity);
-                this.editMode = false;
+                this.activityRegistry.set(activity.id, activity);
                 this.submitting = false;
             })
         } catch (error) {
@@ -105,7 +107,6 @@ export class ActivityStore {
             runInAction(() => {
                 this.activityRegistry.set(activity.id, activity);
                 this.activity = activity;
-                this.editMode = false;
                 this.submitting = false;
             })
         
@@ -145,29 +146,6 @@ export class ActivityStore {
 
     }
 
-    @action openCreateForm = () => {
-        this.editMode = true;
-        this.activity = undefined;
-    }
-
-    @action openEditForm = (id: string) => {
-        this.editMode = true;
-        this.activity = this.activityRegistry.get(id);
-    }
-
-    @action cancelSelectedActivity = () => {
-        this.activity = undefined;
-    }
-
-    @action cancelFormOpen = () => {
-        this.editMode = false;
-    }
-
-    @action selectActivity = (id: string) => {
-        this.activity = this.activityRegistry.get(id);
-        this.editMode = false;
-
-    }
 }
 
 export default createContext(new ActivityStore())
