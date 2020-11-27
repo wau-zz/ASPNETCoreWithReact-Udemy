@@ -25,6 +25,7 @@ namespace API.Controllers
         public async Task<ActionResult<IEnumerable<Value>>> Get()
         {
             var values = await this._context.Values.ToListAsync();
+            
             return Ok(values);
         }
 
@@ -33,6 +34,12 @@ namespace API.Controllers
         public async Task<ActionResult<Value>> Get(int id)
         {
             var value = await this._context.Values.FindAsync(id);
+
+            if (value == null) {
+
+                return NotFound();
+            }
+
             return Ok(value);
         }
 

@@ -25,8 +25,6 @@ namespace API.Controllers
         {
             return await _mediator.Send(new List.Query(), ct); 
             
-
-            
         }
 
         [HttpGet("{id}")]
