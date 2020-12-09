@@ -4,7 +4,7 @@ import { RouteComponentProps } from 'react-router-dom';
 import { Grid } from 'semantic-ui-react';
 import LoadingComponent from '../../../app/layout/LoadingComponent';
 import ActivityStore from '../../../app/stores/activityStore';
-import { ActivityDetailedChats } from './ActivityDetailedChats';
+import { ActivityDetailedChat } from './ActivityDetailedChat';
 import  ActivityDetailedHeader  from './ActivityDetailedHeader';
 import { ActivityDetailedInfo } from './ActivityDetailedInfo';
 import { ActivityDetailedSidebar } from './ActivityDetailedSidebar';
@@ -33,7 +33,7 @@ const ActivityDetails: React.FC<RouteComponentProps<DetailParams>> = ({match, hi
             <Grid.Column width={10}>
                 <ActivityDetailedHeader activity={activity} />
                 <ActivityDetailedInfo activity={activity} />
-                <ActivityDetailedChats />
+                <ActivityDetailedChat />
                 
             </Grid.Column>
             <Grid.Column width={6}>

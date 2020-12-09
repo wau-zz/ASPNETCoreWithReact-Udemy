@@ -1,7 +1,7 @@
 import React, { Fragment } from 'react'
 import { Button, Form, Header, Segment, Comment } from 'semantic-ui-react';
 
-export const ActivityDetailedChats = () => {
+export const ActivityDetailedChat = () => {
     return (
         <Fragment>
             <Segment
